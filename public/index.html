@@ -31,14 +31,16 @@
 
     <main>
       <form class="add-item">
-        <div class="countbutton">
-          <button type="button" onClick="onClickUp()">Up</button>
-          <p><a id="countUp">0</a></p>
-          <input type="hidden" name="countUp" id="input-countUp" value="">
-        <div class="countbutton">
-        </div>
-          <button type="button" onClick="onClickDown()">Down</button>
-          <p><a id="countDown">0</a></p>
+        <div style="width=100%">
+          <div style="width=50%">
+            <button type="button" onClick="onClickUp()">&uarr;</button>
+            <p><a id="countUp">0</a></p>
+            <input type="hidden" name="countUp" id="input-countUp" value="">
+          </div>
+          <div style="width=50%">
+            <button type="button" onClick="onClickDown()">&darr;</button>
+            <p><a id="countDown">0</a></p>
+          </div>
           <input type="hidden" name="countDown" id="input-countDown" value="">
         </div>
         <div class="item">

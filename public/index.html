@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="theme-color" content="#317EFB"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta http-equiv="pragma" content="no-cache" />
     <title>Tracker</title>
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="assets/app.css" />
@@ -30,15 +31,20 @@
 
     <main>
       <form class="add-item">
+        <div class="countbutton">
+          <button type="button" onClick="onClickUp()">Up</button>
+          <p><a id="countUp">0</a></p>
+          <input type="hidden" name="countUp" id="input-countUp" value="">
+        <div class="countbutton">
+        </div>
+          <button type="button" onClick="onClickDown()">Down</button>
+          <p><a id="countDown">0</a></p>
+          <input type="hidden" name="countDown" id="input-countDown" value="">
+        </div>
         <div class="item">
-          <label for="input-note">Salut</label>
-          <input type="text" name="note" id="input-note" required autofocus>
+          <input type="text" name="note" id="input-note" required autofocus placeholder="Nom Comptage">
         </div>
-        <div class="amount">
-          <label for="input-amount">LOL</label>
-          <input type="number" name="amount" id="input-amount" required>
-        </div>
-        <button type="submit">Add item</button>
+        <button type="submit">Sauver</button>
       </form>
 
       <div class="items" data-num="0">
@@ -53,7 +59,7 @@
           <tbody class="list" data-hide-if="store-empty"></tbody>
         </table>
         <button id="clear-items" class="warning" data-action="clear" data-hide-if="store-empty">
-          Clear tracked items
+          Effacer enregistrements
         </button>
          <p class="item-count"></p>
       </div>

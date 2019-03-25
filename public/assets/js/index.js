@@ -3,6 +3,22 @@ var $itemsList = document.querySelector('.items .list')
 var $clearButton = document.querySelector('[data-action="clear"]')
 var $itemCount = document.querySelector('.item-count')
 
+
+var countUp = 0;
+var countDown = 0;
+
+function onClickUp() {
+    countUp += 1;
+    document.getElementById("countUp").innerHTML = countUp;
+    document.getElementById("input-countUp").value = countUp;
+};
+
+function onClickDown() {
+    countDown += 1;
+    document.getElementById("countDown").innerHTML = countDown;
+    document.getElementById("input-countDown").value = countUp;
+};
+
 /**
  * With hoodie we're storing our data locally and it will stick around next time you reload.
  * This means each time the page loads we need to find any previous notes that we have stored.
@@ -42,13 +58,15 @@ $addItemForm.addEventListener('submit', function (event) {
   event.preventDefault()
 
   // Get values from inputs, then clear the form
-  var amount = $addItemForm.querySelector('[name=amount]').value
+  var countUp = $addItemForm.querySelector('[name=countUp]').value
+  var countDown = $addItemForm.querySelector('[name=countDown]').value
   var note = $addItemForm.querySelector('[name=note]').value
   note = note.trim()
   $addItemForm.reset()
 
   hoodie.store.add({
-    amount: amount,
+    countUp: countUp,
+    countDown: countDown,
     note: note
   })
 })
@@ -69,13 +87,15 @@ $itemsList.addEventListener('click', function (event) {
 
   var row = event.target.parentNode.parentNode
   var id = row.dataset.id
-  var amount = row.firstChild.nextSibling.textContent
+  var countUp = row.firstChild.nextSibling.nextSibling.textContent
+  var countDown = row.firstChild.nextSibling.textContent
   var note = row.firstChild.textContent
 
   switch (action) {
     case 'edit':
       row.innerHTML = '<td><input type="text" name="note" value="' + escapeHtml(note) + '" data-reset-value="' + escapeHtml(note) + '"></td>' +
-                      '<td><input type="number" name="amount" value="' + escapeHtml(amount) + '" data-reset-value="' + escapeHtml(amount) + '"></td>' +
+                      '<td><input type="number" name="Up" value="' + escapeHtml(countUp) + '" data-reset-value="' + escapeHtml(countUp) + '"></td>' +
+                      '<td><input type="number" name="Down" value="' + escapeHtml(countDown) + '" data-reset-value="' + escapeHtml(countDown) + '"></td>' +
                       '<td><a href="#" data-action="update">Save</a></td><td><a href="#" data-action="cancel">Cancel</a></td>'
       // Only allow one item on list to be edited.   Remove edit option on other items in list while editing
       var elements = document.getElementsByClassName('edit')
@@ -91,10 +111,12 @@ $itemsList.addEventListener('click', function (event) {
       hoodie.store.remove(id)
       break
     case 'update':
-      amount = row.querySelector('input[name=amount]').value
+      countUp = row.querySelector('input[name=countUp]').value
+      countDown = row.querySelector('input[name=countDown]').value
       note = row.querySelector('input[name=note]').value
       hoodie.store.update(id, {
-        amount: amount,
+        countUp: countUp,
+        countDown: countDown,
         note: note
       })
   }
@@ -113,7 +135,8 @@ function render (items) {
     .map(function (item) {
       return '<tr data-id="' + item._id + '">' +
              '<td>' + escapeHtml(item.note) + '</td>' +
-             '<td>' + escapeHtml(item.amount) + '</td>' +
+             '<td>' + escapeHtml(item.countUp) + '</td>' +
+             '<td>' + escapeHtml(item.countDown) + '</td>' +
              '<td><a class="edit" href="#" data-action="edit">Edit</a></td>' +
              '<td><a href="#" data-action="remove">Delete</a></td>' +
              '</tr>'

@@ -68,7 +68,10 @@ $addItemForm.addEventListener('submit', function (event) {
     countUp: countUp,
     countDown: countDown,
     note: note
-  })
+  });
+
+  document.getElementById("countUp").innerHTML = 0;
+  document.getElementById("countDown").innerHTML = 0;
 })
 
 /**

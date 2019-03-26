@@ -7,8 +7,8 @@
     "url": "https://github.com/hoodiehq/hoodie-app-tracker/issues"
   },
   "engines": {
-    "node": ">=4",
-    "npm": ">=3"
+    "node": "6.9.5",
+    "npm": "3.10.10"
   },
   "homepage": "https://github.com/hoodiehq/hoodie-app-tracker",
   "keywords": [

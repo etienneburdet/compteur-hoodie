@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="Description" content="Author: Hoodie contributors">
-    <meta charset="utf-8">
-    <meta name="theme-color" content="#317EFB"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-     <meta http-equiv="pragma" content="no-cache" />
-    <title>Tracker</title>
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="assets/app.css" />
-    <link rel="manifest" href="/manifest.json">
+    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Milligram provides a minimal setup of styles for a fast and clean starting point. Specially designed for better performance and higher productivity with fewer properties to reset resulting in cleaner code.">
+		<title>Milligram | A minimalist CSS framework.</title>
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+		<link rel="stylesheet" href="lib/normalize.css/normalize.css">
+		<link rel="stylesheet" href="lib/milligram.css">
+		<link rel="stylesheet" href="assets/app.css">
   </head>
 
   <body data-account-state="" data-store-state="">
     <header>
-      <h1><a href="/">Tracker</a></h1>
+      <h1><a href="/">Counter</a></h1>
       <nav>
         <ul>
           <li>
@@ -24,53 +24,61 @@
               <span data-hide-if="signed-out" data-value="username"></span>
            </a></h3>
           </li>
-          <li><h3><a href="about.html">About</a></h3></li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <form class="add-item">
-        <div style="display:flex">
-          <div style="flex: 1 1 auto">
-            <button type="button" onClick="onClickUp()">&uarr;</button>
-            <input type="hidden" name="countUp" id="input-countUp" value="">
+      <!-- form-->
+      <div class="container">
+        <form class="add-item">
+          <input type="hidden" name="countUp" id="input-countUp" value="">
+          <input type="hidden" name="countDown" id="input-countDown" value="">
+          <input type="text" name="note" id="input-note" required autofocus placeholder="Nom Comptage">
+          <button type="submit">Sauver</button>
+        </form>
+      </div>
+
+      <!-- Counter -->
+      <div class="container">
+        <div class="row">
+          <div class="column-50">
+            <button type="button" onClick="onClickDown()" class="counter">&darr;</button>
           </div>
-          <div style="flex: 1 1 auto">
-            <button type="button" onClick="onClickDown()">&darr;</button>
-            <input type="hidden" name="countDown" id="input-countDown" value="">
+          <div class="column-50">
+            <button type="button" onClick="onClickUp()" class="counter">&uarr;</button>
           </div>
         </div>
-        <div style="display:flex">
-          <div style="flex: 1 1 auto">
+        <div class="row">
+          <div>
             <p><a id="countUp">0</a></p>
           </div>
-          <div style="flex: 1 1 auto">
+          <div class="column-50">
             <p><a id="countDown">0</a></p>
           </div>
         </div>
-        <div class="item" >
-          <input type="text" name="note" id="input-note" required autofocus placeholder="Nom Comptage">
-        </div>
-        <button type="submit">Sauver</button>
-      </form>
-
-      <div class="items" data-num="0">
-        <table>
-          <tbody class="placeholder" data-hide-if="store-not-empty">
-            <tr>
-              <td colspan="4">
-                Nothing tracked yet, add something!
-              </td>
-            </tr>
-          </tbody>
-          <tbody class="list" data-hide-if="store-empty"></tbody>
-        </table>
-        <button id="clear-items" class="warning" data-action="clear" data-hide-if="store-empty">
-          Effacer enregistrements
-        </button>
-         <p class="item-count"></p>
       </div>
+
+      <!-- Records -->
+      <div class="container">
+        <div class="items" data-num="0">
+          <table>
+            <tbody class="placeholder" data-hide-if="store-not-empty">
+              <tr>
+                <td colspan="4">
+                  Nothing tracked yet, add something!
+                </td>
+              </tr>
+            </tbody>
+            <tbody class="list" data-hide-if="store-empty"></tbody>
+          </table>
+          <button id="clear-items" class="warning" data-action="clear" data-hide-if="store-empty">
+            Effacer enregistrements
+          </button>
+          <p class="item-count"></p>
+        </div>
+      </div>
+
     </main>
 
     <script src="/hoodie/client.js"></script>

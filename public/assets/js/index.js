@@ -3,20 +3,19 @@ var $itemsList = document.querySelector('.items .list')
 var $clearButton = document.querySelector('[data-action="clear"]')
 var $itemCount = document.querySelector('.item-count')
 
-
 var countUp = 0;
 var countDown = 0;
 
 function onClickUp() {
     countUp += 1;
-    document.getElementById("countUp").innerHTML = countUp;
-    document.getElementById("input-countUp").value = countUp;
+    document.getElementById("disp-countup").innerHTML = countUp;
+    document.getElementById("input-countup").value = countUp;
 };
 
 function onClickDown() {
     countDown += 1;
-    document.getElementById("countDown").innerHTML = countDown;
-    document.getElementById("input-countDown").value = countUp;
+    document.getElementById("disp-countdown").innerHTML = countDown;
+    document.getElementById("input-countdown").value = countDown;
 };
 
 /**
@@ -58,20 +57,23 @@ $addItemForm.addEventListener('submit', function (event) {
   event.preventDefault()
 
   // Get values from inputs, then clear the form
-  var countUp = $addItemForm.querySelector('[name=countUp]').value
-  var countDown = $addItemForm.querySelector('[name=countDown]').value
+  var totalUp = $addItemForm.querySelector('[name=countUp]').value
+  var totalDown = $addItemForm.querySelector('[name=countDown]').value
   var note = $addItemForm.querySelector('[name=note]').value
   note = note.trim()
   $addItemForm.reset()
 
   hoodie.store.add({
-    countUp: countUp,
-    countDown: countDown,
+    countUp: totalUp,
+    countDown: totalDown,
     note: note
   });
 
-  document.getElementById("countUp").innerHTML = 0;
-  document.getElementById("countDown").innerHTML = 0;
+  countUp = 0;
+  countDown = 0;
+
+  document.getElementById("disp-countup").innerHTML = countUp;
+  document.getElementById("disp-countdown").innerHTML = countDown;
 })
 
 /**

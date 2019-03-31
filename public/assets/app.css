@@ -1,29 +1,131 @@
-
-.container {
-	max-width: 80.0rem;
-	padding-bottom: 7.5rem;
-	padding-top: 7.5rem;
+/* toggle content based on account & store status */
+[data-account-state] {
+  display: none;
 }
-
-#home {
-	background: #f4f5f6;
-	height: 100vh;
-	position: relative;
-	max-height: 100vh;
-	min-width: 100vw;
-}
-
-.thumbnail {
-	left: 50%;
-	position: absolute;
-	top: 50%;
-	transform: translate(-50%, -50%);
-}
-
-.counter {
+[data-account-state='signed-in'],
+[data-account-state='signed-out'] {
   display: block;
-  width: 100%;
-  border: none;
-  font-size: 16px;
+}
+[data-store-state='empty'] [data-hide-if="store-empty"],
+[data-store-state='not-empty'] [data-hide-if="store-not-empty"] {
+  display: none;
+}
+[data-account-state='signed-in'] [data-hide-if="signed-in"],
+[data-account-state='signed-out'] [data-hide-if="signed-out"] {
+  display: none;
+}
+
+.items {
+  display: none;
+}
+[data-store-state='empty'] .items,
+[data-store-state='not-empty'] .items {
+  display: block;
+}
+
+.items .placeholder td {
   text-align: center;
+}
+.items table {
+  width: 100%;
+}
+
+/* account page */
+.account-page main label {
+  font-size: .8rem;
+}
+.account-page main input {
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .account-page main input {
+    width: 300px;
+  }
+}
+
+[data-show] > * {
+  display: none;
+}
+[data-show="signin"] .signin,
+[data-show="signup"] .signup,
+[data-show="password-reset"] .password-reset,
+[data-show="options"] .options,
+[data-show="change-email"] .change-email,
+[data-show="change-password"] .change-password,
+[data-show="delete-account"] .delete-account {
+  display: block;
+}
+
+.signup-link {
+  margin-top: 25px;
+  text-align: center;
+  border: 2px solid #4CAF50;
+  border-radius: 0px;
+  padding: 15px;
+}
+.signup-link h3 {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Layout */
+
+.return-link {
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* Components */
+
+.account-settings {
+  display: none;
+}
+
+
+.signup-toggle,
+.signin-toggle {
+  font-size: .8em;
+}
+
+.signup-toggle {
+  text-align: center;
+  color: #333;
+}
+
+.signup-toggle:hover {
+  text-decoration: none
+}
+
+.signout-container {
+  border-top: 1px solid #A1A1A1;
+  margin: 25px 0;
+  padding: 15px 0;
+  text-align: right;
+}
+
+input,
+table {
+  border-collapse: collapse;
+}
+
+.btn:focus,
+input:focus {
+  border-color: transparent;
+  outline: none;
+  box-shadow: 0 0 0 2px blue;
+}
+
+/* Show content for screenreaders only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
